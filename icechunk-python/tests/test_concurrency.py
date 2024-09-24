@@ -43,7 +43,7 @@ async def test_concurrency():
 
     async with asyncio.TaskGroup() as tg:
         task1 = tg.create_task(list_store(store, barrier), name="listing")
- 
+
         for x in range(N):
             for y in range(N):
                 write_task = tg.create_task(read_store(array, x, y, barrier), name=f"read {x},{y}")
@@ -59,7 +59,7 @@ async def test_concurrency():
     for x in range(N):
         for y in range(N):
             assert array[x,y] == x*y
-            
+
 
     # FIXME: add assertions
     print("done")
